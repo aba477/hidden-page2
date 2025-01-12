@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة مخبأة</title>
+    <title>صفحة تدريب الطلبة</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,34 +34,50 @@
     </style>
 </head>
 <body>
-    <h1>برنامج الصفحة المخفية</h1>
-    <button class="button" id="show-button">أظهر النص</button>
-
-    <!-- النص المكتوب مسبقًا والمخبأ -->
-    <div id="hidden-text">
-        <p>بسم الله الرحمن الرحيم</p>
-        <p>
-            هذا النص مكتوب مسبقًا ومخبأ داخل الصفحة. عند الضغط على الزر، يظهر النص هنا. 
-            يمكنك تخصيص النص المكتوب حسب الحاجة.
-        </p>
-        <button class="button delete" id="delete-button">حذف النص</button>
+    <h1>برنامج تدريب الطلبة</h1>
+    
+    <!-- إدخال نص جديد -->
+    <textarea id="student-input" rows="4" cols="50" placeholder="اكتب نصك هنا..."></textarea><br>
+    <button class="button" id="add-text-button">أضف النص</button>
+    
+    <!-- قائمة النصوص -->
+    <div id="text-list">
+        <!-- النصوص التي ستُعرض -->
     </div>
 
     <script>
-        const showButton = document.getElementById('show-button');
-        const hiddenText = document.getElementById('hidden-text');
-        const deleteButton = document.getElementById('delete-button');
+        const addTextButton = document.getElementById('add-text-button');
+        const textList = document.getElementById('text-list');
+        const studentInput = document.getElementById('student-input');
 
-        // عرض النص عند الضغط على زر "أظهر النص"
-        showButton.addEventListener('click', () => {
-            hiddenText.style.display = 'block';
-        });
-
-        // حذف النص عند الضغط على زر "حذف النص"
-        deleteButton.addEventListener('click', () => {
-            hiddenText.style.display = 'none';
+        // إضافة نص جديد إلى القائمة
+        addTextButton.addEventListener('click', () => {
+            const textValue = studentInput.value.trim(); // النص المدخل
+            if (textValue) {
+                const newTextDiv = document.createElement('div');
+                newTextDiv.style.margin = '10px 0';
+                
+                // النص المُضاف
+                const newTextParagraph = document.createElement('p');
+                newTextParagraph.textContent = textValue;
+                newTextDiv.appendChild(newTextParagraph);
+                
+                // زر حذف النص
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'حذف النص';
+                deleteButton.className = 'button delete';
+                deleteButton.addEventListener('click', () => {
+                    textList.removeChild(newTextDiv);
+                });
+                newTextDiv.appendChild(deleteButton);
+                
+                // إضافة النص إلى القائمة
+                textList.appendChild(newTextDiv);
+                studentInput.value = ''; // مسح النص من خانة الإدخال
+            } else {
+                alert('يرجى إدخال نص قبل الإضافة!');
+            }
         });
     </script>
 </body>
 </html>
-
