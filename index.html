@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة مخبأة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #hidden-text {
+            display: none; /* النص يكون مخفياً في البداية */
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button.delete {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>برنامج الصفحة المخفية</h1>
+    <button class="button" id="show-button">أظهر النص</button>
+
+    <!-- النص المكتوب مسبقًا والمخبأ -->
+    <div id="hidden-text">
+        <p>بسم الله الرحمن الرحيم</p>
+        <p>
+            هذا النص مكتوب مسبقًا ومخبأ داخل الصفحة. عند الضغط على الزر، يظهر النص هنا. 
+            يمكنك تخصيص النص المكتوب حسب الحاجة.
+        </p>
+        <button class="button delete" id="delete-button">حذف النص</button>
+    </div>
+
+    <script>
+        const showButton = document.getElementById('show-button');
+        const hiddenText = document.getElementById('hidden-text');
+        const deleteButton = document.getElementById('delete-button');
+
+        // عرض النص عند الضغط على زر "أظهر النص"
+        showButton.addEventListener('click', () => {
+            hiddenText.style.display = 'block';
+        });
+
+        // حذف النص عند الضغط على زر "حذف النص"
+        deleteButton.addEventListener('click', () => {
+            hiddenText.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+
